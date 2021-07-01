@@ -1,0 +1,14 @@
+{
+  "name": "automated-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules\\.bin\\cypress run"
+  },
+  "author": "Kerim",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^7.6.0"
+  }
+}
