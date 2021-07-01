@@ -1,9 +1,9 @@
 class AccountInformationPage{
     fullNameField(){
-        return cy.get('[data-testid=name-account-information]')
+        return cy.get('input[id=name]')
     }
     addressField(){
-        return cy.get(':nth-child(4) > .css-uevokd > .css-12acnxq > [data-testid=phone-number-account-information]')
+        return cy.get('input[id=address]')
     }
     updateSettingsButton(){
         return cy.contains('Update Settings')
