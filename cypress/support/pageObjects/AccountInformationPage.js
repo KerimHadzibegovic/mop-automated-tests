@@ -1,21 +1,17 @@
 class AccountInformationPage{
-    fullNameField(){
-        return cy.get('input[id=name]')
-    }
-    addressField(){
-        return cy.get('input[id=address]')
-    }
-    updateSettingsButton(){
-        return cy.contains('Update Settings')
+    updateAccountInformation(){
+        cy.get('input[id=name]').type("Update")
+        cy.get('input[id=address]').type("Update")
+        cy.contains('Update Settings').click()
     }
     cancelButton(){
-        return cy.contains('Cancel')
+        cy.contains('Cancel').click()
     }
     notificationBanner(){
         return cy.get('.css-5ipae5 > .toastify-container')
     }
     closeNotificationBanner(){
-        return cy.get('[viewBox="0 0 352 512"]')
+        cy.get('[viewBox="0 0 352 512"]').click()
     }
 }
 export default AccountInformationPage;

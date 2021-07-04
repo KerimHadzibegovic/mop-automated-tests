@@ -1,7 +1,7 @@
 class EventsPage{
-    avatar(){
-        return cy.get('.css-fi6pgk > a')
-    }
+    clickAvatarIcon(){
+        cy.get('.css-fi6pgk > a').click()
+    }  
 }
 
 export default EventsPage;

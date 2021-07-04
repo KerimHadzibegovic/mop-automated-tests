@@ -1,12 +1,13 @@
 class SettingsPage {
-    accountInformation(){
-        return cy.contains('Account information')
+    
+    clickLogoutButton(){
+        cy.contains('Log me out').click()
     }
-    loginDetails(){
-        return cy.contains('Login details')
+    clickAccountInformation(){
+        cy.contains('Account information').click()
     }
-    logoutButton(){
-        return cy.contains('Log me out')
+    clickLoginDetails(){
+        cy.contains('Login details').click()
     }
 }
 export default SettingsPage;

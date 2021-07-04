@@ -1,9 +1,10 @@
 class HomePage {
-    signUpButton(){
-        return cy.get('.css-o6pyxp')
+
+    signUpButtonClick(){
+        cy.get('.css-o6pyxp').click()
     }
-    loginButton(){
-        return cy.get('.css-66x756')
+    loginButtonClick(){
+        cy.get('.css-66x756').click()
     }
 }
 

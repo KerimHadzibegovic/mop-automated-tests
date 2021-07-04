@@ -1,8 +1,8 @@
-import HomePage from "../support/pageObjects/HomePage"
-import LoginPage from "../support/pageObjects/LoginPage"
-import EventsPage from "../support/pageObjects/EventsPage"
-import SettingsPage from "../support/pageObjects/SettingsPage"
-import LoginDetailsPage from "../support/pageObjects/LoginDetailsPage"
+import HomePage from "../../support/pageObjects/HomePage"
+import LoginPage from "../../support/pageObjects/LoginPage"
+import EventsPage from "../../support/pageObjects/EventsPage"
+import SettingsPage from "../../support/pageObjects/SettingsPage"
+import LoginDetailsPage from "../../support/pageObjects/LoginDetailsPage"
 
 describe('Login and change account password', () =>{
 
@@ -22,35 +22,31 @@ describe('Login and change account password', () =>{
         cy.visit(Cypress.env('url'))
     })
     it('Click on login button', ()=>{
-        homePage.loginButton().click()
+        homePage.loginButtonClick()
         cy.url().should('include', '/login')
     })
     it('Populate login fields', function() {
-        loginPage.emailField().type(this.data.loginEmail)
-        loginPage.passwordField().type(this.data.loginPassword)
-        loginPage.loginButton().click()
+        loginPage.loginWithCredentials(this.data.loginEmail, this.data.loginPassword)
         cy.url().should('include', '/events')
     })
     it('Open user settings', ()=>{
-        eventsPage.avatar().click()
+        eventsPage.clickAvatarIcon()
         cy.url().should('include', '/settings')
     })
     it('Open login details', ()=>{
-        settingsPage.loginDetails().click()
+        settingsPage.clickLoginDetails()
     })
     it('Change password and save changes', function() {
-        loginDetailsPage.currentPasswordField().type(this.data.loginPassword)
-        loginDetailsPage.newPasswordField().type(this.data.newPassword)
-        loginDetailsPage.confirmPasswordField().type(this.data.newPassword)
-        loginDetailsPage.changePasswordButton().click()
+        loginDetailsPage.populatePasswordFields(this.data.loginPassword,this.data.newPassword)
+        loginDetailsPage.changePasswordButton()
         loginDetailsPage.changePasswordBanner().should('be.visible')
         loginDetailsPage.changePasswordBannerText().should('have.text', 'Password changed successfully.'),
-        loginDetailsPage.closeBanner().click()
+        loginDetailsPage.closeBanner()
     })
     it('Logout', ()=>{
-        eventsPage.avatar().click()
+        eventsPage.clickAvatarIcon
         cy.url().should('include', '/settings')
-        settingsPage.logoutButton().click()
+        settingsPage.clickLogoutButton
         cy.url().should('include','/login')
     })
 })

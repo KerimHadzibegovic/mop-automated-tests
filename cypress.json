@@ -1,5 +1,6 @@
 {
     "env": {
-        "url": "https://qa-task-web.ministryofprogramming.com/"
+        "url": "https://qa-task-web.ministryofprogramming.com/",
+        "urlAPI": "https://production-qa-fxhcwcz4ja-ew.a.run.app"
       }
 }

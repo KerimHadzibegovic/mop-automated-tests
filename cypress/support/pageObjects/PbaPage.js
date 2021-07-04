@@ -1,12 +1,12 @@
 class PbaPage{
-    registrationCodeField(){
-        return cy.get('input[id="registration_code"]')
+    enterRegistrationCode(code){
+        cy.get('input[id="registration_code"]').type(code)
     }
-    verifyButton(){
-        return cy.get('[data-testid=pba-signup-button]')
+    clickVerifyButton(){
+        cy.get('[data-testid=pba-signup-button]').click()
     }
-    submitModalButton(){
-        return cy.get('.css-1czsflu')
+    clickSubmitModalButton(){
+        cy.get('.css-1czsflu').click()
     }
 }
 

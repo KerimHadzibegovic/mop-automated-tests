@@ -1,7 +1,7 @@
-import HomePage from "../support/pageObjects/HomePage"
-import LoginPage from "../support/pageObjects/LoginPage"
-import EventsPage from "../support/pageObjects/EventsPage"
-import SettingsPage from "../support/pageObjects/SettingsPage"
+import HomePage from "../../support/pageObjects/HomePage"
+import LoginPage from "../../support/pageObjects/LoginPage"
+import EventsPage from "../../support/pageObjects/EventsPage"
+import SettingsPage from "../../support/pageObjects/SettingsPage"
 
 describe('User login', ()=>{
 
@@ -20,20 +20,18 @@ describe('User login', ()=>{
         cy.visit(Cypress.env('url'))
     })
     it('Click on Log In button', ()=>{
-        homePage.loginButton().click()
+        homePage.loginButtonClick()
         cy.url().should('include', '/login')
     })
     it('Submit login', function() {
-        loginPage.emailField().type(this.data.loginEmail)
-        loginPage.passwordField().type(this.data.loginPassword)
-        loginPage.loginButton().click()
+        loginPage.loginWithCredentials(this.data.loginEmail, this.data.loginPassword)
         cy.wait(4000)
         cy.url().should('include', '/events')
     })
     it('Open settings and logout', ()=>{
-        eventsPage.avatar().click()
+        eventsPage.clickAvatarIcon()
         cy.url().should('include', '/settings')
-        settingsPage.logoutButton().click()
+        settingsPage.clickLogoutButton()
         cy.url().should('include','/login')
     })
 

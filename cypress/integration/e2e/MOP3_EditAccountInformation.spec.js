@@ -1,8 +1,8 @@
-import HomePage from "../support/pageObjects/HomePage"
-import LoginPage from "../support/pageObjects/LoginPage"
-import EventsPage from "../support/pageObjects/EventsPage"
-import SettingsPage from "../support/pageObjects/SettingsPage"
-import AccountInformationPage from "../support/pageObjects/AccountInformationPage"
+import HomePage from "../../support/pageObjects/HomePage"
+import LoginPage from "../../support/pageObjects/LoginPage"
+import EventsPage from "../../support/pageObjects/EventsPage"
+import SettingsPage from "../../support/pageObjects/SettingsPage"
+import AccountInformationPage from "../../support/pageObjects/AccountInformationPage"
 
 describe('Login and edit account information', ()=>{
 
@@ -22,29 +22,25 @@ describe('Login and edit account information', ()=>{
         cy.visit(Cypress.env('url'))
     })
     it('Click on Log In button', ()=>{    
-        homePage.loginButton().click()
+        homePage.loginButtonClick()
         cy.url().should('include', '/login')
     })
     it('Submit login', function() {   
-        loginPage.emailField().type(this.data.loginEmail)
-        loginPage.passwordField().type(this.data.loginPassword)
-        loginPage.loginButton().click()
+        loginPage.loginWithCredentials(this.data.loginEmail, this.data.loginPassword)
         cy.url().should('include', '/events')
     })
     it('Open settings and edit information', ()=>{  
-        eventsPage.avatar().click()
+        eventsPage.clickAvatarIcon()
         cy.url().should('include', '/settings')
-        settingsPage.accountInformation().click()
-        accountInformation.fullNameField().type('Update')
-        accountInformation.addressField().type('Update')
-        accountInformation.updateSettingsButton().click()
+        settingsPage.clickAccountInformation()
+        accountInformation.updateAccountInformation()
         accountInformation.notificationBanner().should('have.text', 'Account information saved successfully.')
-        accountInformation.closeNotificationBanner().click()
+        accountInformation.closeNotificationBanner()
     })
     it('Logout', ()=>{
-        eventsPage.avatar().click()
+        eventsPage.clickAvatarIcon()
         cy.url().should('include', '/settings')
-        settingsPage.logoutButton().click()
+        settingsPage.clickLogoutButton()
         cy.url().should('include','/login')
     })
 })
